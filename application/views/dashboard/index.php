@@ -3,7 +3,10 @@
 
      <!-- Page Heading -->
      <h1 class="h3 mb-4 text-gray-800">Dokumen Monitoring Operasional Mesin</h1>
-     <a href="<?= base_url('dashboard/input') ?>" class="btn btn-primary mb-3">Add New Dokumen</a>
+     <?= form_error('header', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+     <?= $this->session->flashdata('message'); ?>
+
+     <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newDocModal">Add New Dokumen</a>
 
      <table class="table">
           <thead>
@@ -26,12 +29,13 @@
                          <th scope="row"><?= $i; ?></th>
                          <td><?= $h['doc']; ?></td>
                          <td><?= $h['date']; ?></td>
-                         <td><?= $h['nama']; ?></td>
+                         <td><?= $h['name']; ?></td>
                          <td><?= $h['createdDate']; ?></td>
                          <td><?= $h['updatedBy']; ?></td>
                          <td><?= $h['updatedDate']; ?></td>
                          <td>
                               <a href="<?= base_url('dashboard/detail') ?>" class="badge badge-secondary">Detail</a>
+                              <a href="<?= base_url('dashboard/tambah') ?>" class="badge badge-primary">Add</a>
                               <a href="<?= base_url('dashboard/edit') ?>" class="badge badge-success">Edit</a>
                               <a href="<?= base_url('dashboard/detail') ?>" class="badge badge-danger">Delete</a>
                          </td>
@@ -46,3 +50,29 @@
 
 </div>
 <!-- End of Main Content -->
+
+<!-- Modal -->
+<div class="modal fade" id="newDocModal" tabindex="-1" role="dialog" aria-labelledby="newDocModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="newDocModalLabel">Add New Dokumen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <form action="<?= base_url('dashboard') ?>" method="POST">
+                    <div class="modal-body">
+                         <div class="form-group">
+                              <input type="text" class="form-control" id="doc" name="doc" placeholder="MOM/DRP/20/..">
+                              <input type="date" class="form-control" id="date" name="date" <?php echo date('Y-m-d'); ?>>
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+               </form>
+          </div>
+     </div>
+</div>

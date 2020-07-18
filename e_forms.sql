@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jul 2020 pada 09.19
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.7
+-- Generation Time: Jul 18, 2020 at 11:14 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,88 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `beltpress`
---
-
-CREATE TABLE `beltpress` (
-  `id` int(11) NOT NULL,
-  `jenis_BP` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `beltpress`
---
-
-INSERT INTO `beltpress` (`id`, `jenis_BP`) VALUES
-(1, 'LINE HIJAU BELT PRESS I'),
-(2, 'LINE HIJAU BELT PRESS II');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `details1`
---
-
-CREATE TABLE `details1` (
-  `id` int(11) NOT NULL,
-  `header_id` int(11) NOT NULL,
-  `beltpress_id` int(11) NOT NULL,
-  `jam` time NOT NULL,
-  `GPH1` tinyint(1) NOT NULL,
-  `GPH2` tinyint(1) NOT NULL,
-  `GPH3` tinyint(1) NOT NULL,
-  `GPH4` tinyint(1) NOT NULL,
-  `GPH5` tinyint(1) NOT NULL,
-  `regulator1` int(11) NOT NULL,
-  `regulator2` int(11) NOT NULL,
-  `regulator3` int(11) NOT NULL,
-  `regulator4` int(11) NOT NULL,
-  `regulator5` int(11) NOT NULL,
-  `mainMotor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `details1`
---
-
-INSERT INTO `details1` (`id`, `header_id`, `beltpress_id`, `jam`, `GPH1`, `GPH2`, `GPH3`, `GPH4`, `GPH5`, `regulator1`, `regulator2`, `regulator3`, `regulator4`, `regulator5`, `mainMotor`) VALUES
-(1, 3, 1, '06:00:00', 1, 1, 1, 1, 1, 2, 4, 1, 3, 4, 20);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `details2`
---
-
-CREATE TABLE `details2` (
-  `id` int(11) NOT NULL,
-  `header_id` int(11) NOT NULL,
-  `beltpress_id` int(11) NOT NULL,
-  `jam` time NOT NULL,
-  `sprayWater` tinyint(1) NOT NULL,
-  `GPH6` tinyint(1) NOT NULL,
-  `GPH7` tinyint(1) NOT NULL,
-  `GPH8` tinyint(1) NOT NULL,
-  `GPH9` tinyint(1) NOT NULL,
-  `regulator1` int(11) NOT NULL,
-  `regulator2` int(11) NOT NULL,
-  `regulator3` int(11) NOT NULL,
-  `regulator4` int(11) NOT NULL,
-  `regulator5` int(11) NOT NULL,
-  `mainMotor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `details2`
---
-
-INSERT INTO `details2` (`id`, `header_id`, `beltpress_id`, `jam`, `sprayWater`, `GPH6`, `GPH7`, `GPH8`, `GPH9`, `regulator1`, `regulator2`, `regulator3`, `regulator4`, `regulator5`, `mainMotor`) VALUES
-(1, 3, 2, '06:00:00', 1, 1, 1, 1, 1, 3, 4, 2, 3, 1, 25);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `header`
+-- Table structure for table `header`
 --
 
 CREATE TABLE `header` (
@@ -113,104 +32,123 @@ CREATE TABLE `header` (
   `doc` varchar(128) NOT NULL,
   `date` date NOT NULL,
   `createdBy` int(11) NOT NULL,
-  `createdDate` date NOT NULL,
+  `createdDate` varchar(128) NOT NULL,
   `updatedBy` int(11) DEFAULT NULL,
-  `updatedDate` date DEFAULT NULL
+  `updatedDate` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `header`
+-- Dumping data for table `header`
 --
 
 INSERT INTO `header` (`id`, `doc`, `date`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
-(3, 'MOM/DRP/20/20', '2020-07-17', 1, '2020-07-17', NULL, NULL);
+(3, 'WOW/DRP/20/20', '2020-07-17', 1, '2020-07-17', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `momitoringmom`
+--
+
+CREATE TABLE `momitoringmom` (
+  `id` int(11) NOT NULL,
+  `header_id` int(11) NOT NULL,
+  `jam` time NOT NULL,
+  `gph1` tinyint(1) NOT NULL,
+  `gph2` tinyint(1) NOT NULL,
+  `gph3` tinyint(1) NOT NULL,
+  `gph4` tinyint(1) NOT NULL,
+  `gph5` tinyint(1) NOT NULL,
+  `regulator1_bp1` int(11) NOT NULL,
+  `regulator2_bp1` int(11) NOT NULL,
+  `regulator3_bp1` int(11) NOT NULL,
+  `regulator4_bp1` int(11) NOT NULL,
+  `regulator5_bp1` int(11) NOT NULL,
+  `mainMotor_bp1` int(11) NOT NULL,
+  `sprayWater` tinyint(1) NOT NULL,
+  `gph6` tinyint(1) NOT NULL,
+  `gph7` tinyint(1) NOT NULL,
+  `gph8` tinyint(1) NOT NULL,
+  `gph9` tinyint(1) NOT NULL,
+  `regulator1_bp2` int(11) NOT NULL,
+  `regulator2_bp2` int(11) NOT NULL,
+  `regulator3_bp2` int(11) NOT NULL,
+  `regulator4_bp2` int(11) NOT NULL,
+  `regulator5_bp2` int(11) NOT NULL,
+  `mainMotor_bp2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `momitoringmom`
+--
+
+INSERT INTO `momitoringmom` (`id`, `header_id`, `jam`, `gph1`, `gph2`, `gph3`, `gph4`, `gph5`, `regulator1_bp1`, `regulator2_bp1`, `regulator3_bp1`, `regulator4_bp1`, `regulator5_bp1`, `mainMotor_bp1`, `sprayWater`, `gph6`, `gph7`, `gph8`, `gph9`, `regulator1_bp2`, `regulator2_bp2`, `regulator3_bp2`, `regulator4_bp2`, `regulator5_bp2`, `mainMotor_bp2`) VALUES
+(1, 3, '06:00:00', 1, 1, 1, 1, 1, 3, 2, 2, 3, 4, 30, 1, 1, 1, 1, 1, 4, 3, 2, 3, 3, 25);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `nama` varchar(128) NOT NULL,
+  `name` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
-  `password` varchar(256) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `is_active` int(11) NOT NULL
+  `is_active` int(11) NOT NULL,
+  `date_created` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `email`, `password`, `role_id`, `is_active`) VALUES
-(1, 'Haris Diyaul Fata', 'haris.diyaul.fata@gmail.com', 'qwerty12345', 2, 1);
+INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
+(1, 'Haris Diyaul Fata', 'haris.diyaul.fata@gmail.com', 'default.jpg', '$2y$10$Bb58o9XruNypFViv//s3lO8Mb8JIRTF9f2CldTejKBr5YbukBfUDa', 2, 1, '1595046266');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `beltpress`
---
-ALTER TABLE `beltpress`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `details1`
---
-ALTER TABLE `details1`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `details2`
---
-ALTER TABLE `details2`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `header`
+-- Indexes for table `header`
 --
 ALTER TABLE `header`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `momitoringmom`
+--
+ALTER TABLE `momitoringmom`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `beltpress`
---
-ALTER TABLE `beltpress`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `details1`
---
-ALTER TABLE `details1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `details2`
---
-ALTER TABLE `details2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `header`
+-- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `momitoringmom`
+--
+ALTER TABLE `momitoringmom`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
