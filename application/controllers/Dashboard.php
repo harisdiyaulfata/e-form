@@ -39,23 +39,12 @@ class Dashboard extends CI_Controller
           }
      }
 
-     public function input()
-     {
-          $data['title'] = 'Tambah Dokumen MOM';
-          $data['user'] = $this->dashboard->getSession();
-
-          $this->load->view('tampilan/header', $data);
-          $this->load->view('tampilan/navbar', $data);
-          $this->load->view('tampilan/topbar', $data);
-          $this->load->view('dashboard/input', $data);
-          $this->load->view('tampilan/footer');
-     }
-
-     public function detail()
+     public function detail($id_header)
      {
           $data['title'] = 'Detail MOM';
           $data['user'] = $this->dashboard->getSession();
-          $data['momitoringmom'] = $this->dashboard->getDetail();
+          $data['header'] = $this->dashboard->getIdHeader($id_header);
+          $data['momitoringmom'] = $this->dashboard->getDetail($id_header);
 
           $this->load->view('tampilan/header', $data);
           $this->load->view('tampilan/navbar', $data);
@@ -64,35 +53,35 @@ class Dashboard extends CI_Controller
           $this->load->view('tampilan/footer');
      }
 
-     public function tambah()
+     public function tambah($id_header)
      {
           $data['title'] = 'Tambah Data MOM';
           $data['user'] = $this->dashboard->getSession();
-          $data['momitoringmom'] = $this->dashboard->getDetail();
+          $data['header'] = $this->dashboard->getIdHeader($id_header);
 
-          $this->form_validation->set_rules('jam', 'Jam', 'required');
-          $this->form_validation->set_rules('gph1', 'GPH 1', 'required');
-          $this->form_validation->set_rules('gph2', 'GPH 2', 'required');
-          $this->form_validation->set_rules('gph3', 'GPH 3', 'required');
-          $this->form_validation->set_rules('gph4', 'GPH 4', 'required');
-          $this->form_validation->set_rules('gph5', 'GPH 5', 'required');
-          $this->form_validation->set_rules('regulator1_bp1', 'Regulator 1', 'required');
-          $this->form_validation->set_rules('regulator2_bp1', 'Regulator 2', 'required');
-          $this->form_validation->set_rules('regulator3_bp1', 'Regulator 3', 'required');
-          $this->form_validation->set_rules('regulator4_bp1', 'Regulator 4', 'required');
-          $this->form_validation->set_rules('regulator5_bp1', 'Regulator 5', 'required');
-          $this->form_validation->set_rules('mainMotor_bp1', 'Main Motor', 'required');
-          $this->form_validation->set_rules('sprayWater', 'Spray Water', 'required');
-          $this->form_validation->set_rules('gph6', 'GPH 6', 'required');
-          $this->form_validation->set_rules('gph7', 'GPH 7', 'required');
-          $this->form_validation->set_rules('gph8', 'GPH 8', 'required');
-          $this->form_validation->set_rules('gph9', 'GPH 9', 'required');
-          $this->form_validation->set_rules('regulator1_bp2', 'Regulator 1', 'required');
-          $this->form_validation->set_rules('regulator2_bp2', 'Regulator 2', 'required');
-          $this->form_validation->set_rules('regulator3_bp2', 'Regulator 3', 'required');
-          $this->form_validation->set_rules('regulator4_bp2', 'Regulator 4', 'required');
-          $this->form_validation->set_rules('regulator5_bp2', 'Regulator 5', 'required');
-          $this->form_validation->set_rules('mainMotor_bp2', 'Main Motor', 'required');
+          $this->form_validation->set_rules('jam', 'Jam', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph1', 'GPH 1', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph2', 'GPH 2', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph3', 'GPH 3', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph4', 'GPH 4', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph5', 'GPH 5', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator1_bp1', 'Regulator 1', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator2_bp1', 'Regulator 2', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator3_bp1', 'Regulator 3', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator4_bp1', 'Regulator 4', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator5_bp1', 'Regulator 5', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('mainMotor_bp1', 'Main Motor', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('sprayWater', 'Spray Water', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph6', 'GPH 6', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph7', 'GPH 7', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph8', 'GPH 8', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('gph9', 'GPH 9', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator1_bp2', 'Regulator 1', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator2_bp2', 'Regulator 2', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator3_bp2', 'Regulator 3', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator4_bp2', 'Regulator 4', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('regulator5_bp2', 'Regulator 5', 'required', ['required' => 'Data kosong!']);
+          $this->form_validation->set_rules('mainMotor_bp2', 'Main Motor', 'required', ['required' => 'Data kosong!']);
 
           if ($this->form_validation->run() == false) {
                $this->load->view('tampilan/header', $data);
@@ -102,7 +91,7 @@ class Dashboard extends CI_Controller
                $this->load->view('tampilan/footer');
           } else {
                $data = array(
-                    'header_id' => $data['momitoringmom']['header_id'],
+                    'header_id' => $data['header']['id_header'],
                     'jam' => $this->input->post('jam'),
                     'gph1' => $this->input->post('gph1'),
                     'gph2' => $this->input->post('gph2'),

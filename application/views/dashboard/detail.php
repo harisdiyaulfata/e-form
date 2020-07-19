@@ -1,3 +1,5 @@
+<?php var_dump($header); ?>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
      <div class="card">
@@ -8,17 +10,15 @@
           <div class="card-body">
 
                <form class="form-inline">
-                    <?php foreach ($momitoringmom as $mm) : ?>
-                         <label for="doc" class="my-1 mr-2">Dokumen</label>
-                         <div class="col-sm-4">
-                              <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $mm['doc']; ?>">
-                         </div>
+                    <label for="doc" class="my-1 mr-2">Dokumen</label>
+                    <div class="col-sm-4">
+                         <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
+                    </div>
 
-                         <label for="date" class="col-sm-1 col-form-label">Tanggal</label>
-                         <div class="col-sm-4">
-                              <input type="text" readonly class="form-control" id="date" class="date" value="<?= $mm['date']; ?>">
-                         </div>
-                    <?php endforeach; ?>
+                    <label for="date" class="col-sm-1 col-form-label">Tanggal</label>
+                    <div class="col-sm-4">
+                         <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+                    </div>
                </form>
                <hr>
                <h6 class="h5 mb-5 text-gray-800">Belt Press I</h6>

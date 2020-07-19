@@ -21,12 +21,17 @@ class Dashboard_model extends CI_Model
           return $this->db->get()->result_array();
      }
 
-     public function getDetail()
+     public function getIdHeader($id_header)
      {
-          $this->db->select('*', 'header.doc', 'header.date');
+          return $this->db->get_where('header', ['id_header' => $id_header])->row_array();
+     }
+
+     public function getDetail($id_header)
+     {
+          $this->db->select('*', 'header.doc', 'header.date', 'header.id');
           $this->db->from('header');
-          $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id');
-          $this->db->order_by('momitoringmom.jam');
+          $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id_header');
+          $this->db->where('momitoringmom.header_id', $id_header);
           return $this->db->get()->result_array();
      }
 

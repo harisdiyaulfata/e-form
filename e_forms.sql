@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2020 at 11:14 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Waktu pembuatan: 19 Jul 2020 pada 20.11
+-- Versi server: 10.4.13-MariaDB
+-- Versi PHP: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `header`
+-- Struktur dari tabel `header`
 --
 
 CREATE TABLE `header` (
-  `id` int(11) NOT NULL,
+  `id_header` int(11) NOT NULL,
   `doc` varchar(128) NOT NULL,
   `date` date NOT NULL,
   `createdBy` int(11) NOT NULL,
@@ -38,16 +38,17 @@ CREATE TABLE `header` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `header`
+-- Dumping data untuk tabel `header`
 --
 
-INSERT INTO `header` (`id`, `doc`, `date`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
-(3, 'WOW/DRP/20/20', '2020-07-17', 1, '2020-07-17', NULL, NULL);
+INSERT INTO `header` (`id_header`, `doc`, `date`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
+(7, 'MOM/DRP/20/20', '2020-07-20', 1, '2020-07-20', NULL, NULL),
+(8, 'MOM/DRP/20/20', '2020-07-21', 1, '2020-07-21', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `momitoringmom`
+-- Struktur dari tabel `momitoringmom`
 --
 
 CREATE TABLE `momitoringmom` (
@@ -79,16 +80,17 @@ CREATE TABLE `momitoringmom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `momitoringmom`
+-- Dumping data untuk tabel `momitoringmom`
 --
 
 INSERT INTO `momitoringmom` (`id`, `header_id`, `jam`, `gph1`, `gph2`, `gph3`, `gph4`, `gph5`, `regulator1_bp1`, `regulator2_bp1`, `regulator3_bp1`, `regulator4_bp1`, `regulator5_bp1`, `mainMotor_bp1`, `sprayWater`, `gph6`, `gph7`, `gph8`, `gph9`, `regulator1_bp2`, `regulator2_bp2`, `regulator3_bp2`, `regulator4_bp2`, `regulator5_bp2`, `mainMotor_bp2`) VALUES
-(1, 3, '06:00:00', 1, 1, 1, 1, 1, 3, 2, 2, 3, 4, 30, 1, 1, 1, 1, 1, 4, 3, 2, 3, 3, 25);
+(6, 7, '07:00:00', 1, 1, 1, 1, 1, 5, 2, 2, 2, 2, 23, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 34),
+(7, 7, '08:00:00', 1, 0, 1, 1, 0, 5, 2, 2, 2, 2, 44, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 43);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -103,7 +105,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
@@ -114,41 +116,41 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 --
 
 --
--- Indexes for table `header`
+-- Indeks untuk tabel `header`
 --
 ALTER TABLE `header`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_header`);
 
 --
--- Indexes for table `momitoringmom`
+-- Indeks untuk tabel `momitoringmom`
 --
 ALTER TABLE `momitoringmom`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `header`
+-- AUTO_INCREMENT untuk tabel `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `momitoringmom`
+-- AUTO_INCREMENT untuk tabel `momitoringmom`
 --
 ALTER TABLE `momitoringmom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
