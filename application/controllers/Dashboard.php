@@ -117,13 +117,10 @@ class Dashboard extends CI_Controller
           }
      }
 
-     public function edit()
+     public function edit($id_mom)
      {
-          $id_mom = $_POST['id_mom'];
-          $id_header = $_POST['id_header'];
           $data['title'] = 'Edit MOM';
           $data['user'] = $this->dashboard_model->getSession();
-          $data['header'] = $this->dashboard_model->getIdHeader($id_header);
           $data['momitoringmom'] = $this->dashboard_model->getIdMom($id_mom);
 
           $this->form_validation->set_rules('jam', 'Jam', 'required', ['required' => 'Data kosong!']);
@@ -159,7 +156,7 @@ class Dashboard extends CI_Controller
           } else {
                $dt = array(
                     'id_mom' => $id_mom,
-                    'header_id' => $id_header,
+                    'header_id' => $this->input->post('id_header'),
                     'jam' => $this->input->post('jam'),
                     'gph1' => $this->input->post('gph1'),
                     'gph2' => $this->input->post('gph2'),
@@ -188,5 +185,16 @@ class Dashboard extends CI_Controller
                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data MOM telah diedit!</div>');
                redirect('dashboard');
           }
+     }
+
+     public function delete($id_mom)
+     {
+          $data['user'] = $this->dashboard_model->getSession(); //proteksi
+
+          $momitoringmom = $this->dashboard_model->getIdMom($id_mom);
+          $dt = array('id_mom' => $momitoringmom['id_mom']);
+          $this->dashboard_model->delete($dt);
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data MOM telah dihapus!</div>');
+          redirect('dashboard');
      }
 }

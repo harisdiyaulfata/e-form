@@ -28,16 +28,10 @@ class Dashboard_model extends CI_Model
 
      public function getIdMom($id_mom)
      {
-          $id_MOM = $this->db->get_where('momitoringmom', ['id_mom' => $id_mom])->row_array();
-          return $id_MOM;
-     }
-
-     public function getEdit($id_header, $id_mom)
-     {
           $this->db->select('*', 'header.doc', 'header.date', 'header.id');
           $this->db->from('header');
           $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id_header');
-          $this->db->where('momitoringmom.header_id', $id_header & 'momitoringmom.id_mom', $id_mom);
+          $this->db->where('momitoringmom.id_mom', $id_mom);
           return $this->db->get()->row_array();
      }
 
@@ -62,6 +56,14 @@ class Dashboard_model extends CI_Model
 
      public function editMOM($dt)
      {
+          $this->db->where('id_mom', $dt['id_mom']);
           $this->db->update('momitoringmom', $dt);
+     }
+
+     //hapus data
+     public function delete($dt)
+     {
+          $this->db->where('id_mom', $dt['id_mom']);
+          $this->db->delete('momitoringmom', $dt);
      }
 }

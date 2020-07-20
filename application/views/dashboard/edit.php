@@ -1,4 +1,4 @@
-<?php var_dump($momitoringmom); ?>
+>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -9,19 +9,22 @@
           </div>
           <div class="card-body">
 
-               <form action="<?= base_url('dashboard/edit') ?>" method="POST">
+               <form action="" method="POST">
+                    <input type="text" name="id_mom" value="<?= $momitoringmom['id_mom'] ?>">
+                    <input type="text" name="id_header" value="<?= $momitoringmom['id_header'] ?>">
                     <div class="form-group">
 
                          <div class="form-group row col-5">
                               <label for="doc" class="col-sm col-form-label">Dokumen</label>
                               <div class="col-sm">
-                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
+                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $momitoringmom['doc']; ?>">
                               </div>
                          </div>
+
                          <div class="form-group row col-5">
                               <label for="date" class="col-sm col-form-label">Tanggal</label>
                               <div class="col-sm">
-                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $momitoringmom['date']; ?>">
                               </div>
                          </div>
                          <input type="hidden" id="id_mom" name="id_mom" value="<?= $momitoringmom['id_mom']; ?>">

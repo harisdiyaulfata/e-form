@@ -72,6 +72,7 @@
                                    <td><?= $mm['mainMotor_bp1']; ?></td>
                                    <td>
                                         <a href="<?= base_url('dashboard/edit/' . $mm['id_mom']) ?>" class="badge badge-success" name="id_mom">Edit</a>
+                                        <a href="<?= base_url('dashboard/delete/' . $mm['id_mom']) ?>" class="badge badge-danger" name="id_mom">Hapus</a>
                                    </td>
                               </tr>
                          <?php endforeach; ?>
