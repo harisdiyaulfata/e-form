@@ -26,6 +26,21 @@ class Dashboard_model extends CI_Model
           return $this->db->get_where('header', ['id_header' => $id_header])->row_array();
      }
 
+     public function getIdMom($id_mom)
+     {
+          $id_MOM = $this->db->get_where('momitoringmom', ['id_mom' => $id_mom])->row_array();
+          return $id_MOM;
+     }
+
+     public function getEdit($id_header, $id_mom)
+     {
+          $this->db->select('*', 'header.doc', 'header.date', 'header.id');
+          $this->db->from('header');
+          $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id_header');
+          $this->db->where('momitoringmom.header_id', $id_header & 'momitoringmom.id_mom', $id_mom);
+          return $this->db->get()->row_array();
+     }
+
      public function getDetail($id_header)
      {
           $this->db->select('*', 'header.doc', 'header.date', 'header.id');
@@ -40,12 +55,13 @@ class Dashboard_model extends CI_Model
           $this->db->insert('header', $data);
      }
 
-     public function inputMOM($data)
+     public function inputMOM($dt)
      {
-          $this->db->insert('momitoringmom', $data);
+          $this->db->insert('momitoringmom', $dt);
      }
 
-     public function editMOM($data)
+     public function editMOM($dt)
      {
+          $this->db->update('momitoringmom', $dt);
      }
 }

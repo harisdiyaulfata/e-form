@@ -1,3 +1,5 @@
+<?php var_dump($momitoringmom); ?>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
      <div class="card">
@@ -6,24 +8,29 @@
                <h1 class="h3 mb-4 text-gray-800">Tambah Data Monitoring Operasional Mesin</h1>
           </div>
           <div class="card-body">
-               <form method="POST">
+
+               <form action="<?= base_url('dashboard/edit') ?>" method="POST">
                     <div class="form-group">
-                         <div class="form-group row">
-                              <label for="doc" class="col-sm-1 col-form-label">Dokumen</label>
-                              <div class="col-sm-4">
-                                   <input type="text" readonly class="form-control-plaintext" id="doc" name="doc" value="CONTOH">
+
+                         <div class="form-group row col-5">
+                              <label for="doc" class="col-sm col-form-label">Dokumen</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
                               </div>
                          </div>
-                         <div class="form-group row">
-                              <label for="date" class="col-sm-1 col-form-label">Tanggal</label>
-                              <div class="col-sm-4">
-                                   <input type="text" readonly class="form-control-plaintext" id="date" class="date" value="16/07/2290">
+                         <div class="form-group row col-5">
+                              <label for="date" class="col-sm col-form-label">Tanggal</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
                               </div>
                          </div>
-                         <div class="form-group row">
-                              <label for="jam" class="col-sm-1 col-form-label">Jam</label>
-                              <div class="col-sm-4">
-                                   <input type="time" class="form-control" id="jam" class="jam">
+                         <input type="hidden" id="id_mom" name="id_mom" value="<?= $momitoringmom['id_mom']; ?>">
+
+                         <div class="form-group row col-5">
+                              <label for="jam" class="col-sm col-form-label">Jam</label>
+                              <div class="col-sm">
+                                   <input type="time" class="form-control" id="jam" name="jam" value="<?= $momitoringmom['jam']; ?>">
+                                   <?= form_error('jam', '<small class="text-danger pl-3">', '</small>'); ?>
                               </div>
                          </div>
                     </div>
@@ -32,69 +39,60 @@
                     <div class="form-group row">
                          <div class="form-group col-sm">
                               <label for="gph1">GPH 1</label>
-                              <select class="form-control form-control-sm" id="gph1" class="gph1">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph1" name="gph1" value="<?= $momitoringmom['gph1']; ?>">
+                              <?= form_error('gph1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph2">GPH 2</label>
-                              <select class="form-control form-control-sm" id="gph2" class="gph2">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph2" name="gph2" value="<?= $momitoringmom['gph2']; ?>">
+                              <?= form_error('gph2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph3">GPH 3</label>
-                              <select class="form-control form-control-sm" id="gph3" class="gph3">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph3" name="gph3" value="<?= $momitoringmom['gph3']; ?>">
+                              <?= form_error('gph3', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph4">GPH 4</label>
-                              <select class="form-control form-control-sm" id="gph4" class="gph4">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph4" name="gph4" value="<?= $momitoringmom['gph4']; ?>">
+                              <?= form_error('gph4', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph5">GPH 5</label>
-                              <select class="form-control form-control-sm" id="gph5" class="gph5">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph5" name="gph5" value="<?= $momitoringmom['gph5']; ?>">
+                              <?= form_error('gph5', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                     </div>
                     <div class="form-group row">
                          <div class="form-group col-sm">
                               <label for="regulator1_bp1">Regulator 1</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator1_bp1" class="regulator1_bp1">
+                              <input type="text" class="form-control form-control-sm" id="regulator1_bp1" name="regulator1_bp1" value="<?= $momitoringmom['regulator1_bp1']; ?>">
+                              <?= form_error('regulator1_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="regulator2_bp1">Regulator 2</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator2_bp1" class="regulator2_bp1">
+                              <input type="text" class="form-control form-control-sm" id="regulator2_bp1" name="regulator2_bp1" value="<?= $momitoringmom['regulator2_bp1']; ?>">
+                              <?= form_error('regulator2_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="regulator3_bp1">Regulator 3</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator3_bp1" class="regulator3_bp1">
+                              <input type="text" class="form-control form-control-sm" id="regulator3_bp1" name="regulator3_bp1" value="<?= $momitoringmom['regulator3_bp1']; ?>">
+                              <?= form_error('regulator3_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="regulator4_bp1">Regulator 4</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator4_bp1" class="regulator4_bp1">
+                              <input type="text" class="form-control form-control-sm" id="regulator4_bp1" name="regulator4_bp1" value="<?= $momitoringmom['regulator4_bp1']; ?>">
+                              <?= form_error('regulator4_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="regulator5_bp1">Regulator 5</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator5_bp1" class="regulator5_bp1">
+                              <input type="text" class="form-control form-control-sm" id="regulator5_bp1" name="regulator5_bp1" value="<?= $momitoringmom['regulator5_bp1']; ?>">
+                              <?= form_error('regulator5_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="mainMotor_bp1">Main Motor</label>
-                              <input type="text" class="form-control form-control-sm" id="mainMotor_bp1" class="mainMotor_bp1">
+                              <input type="text" class="form-control form-control-sm" id="mainMotor_bp1" name="mainMotor_bp1" value="<?= $momitoringmom['mainMotor_bp1']; ?>">
+                              <?= form_error('mainMotor_bp1', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                     </div>
                     <hr>
@@ -102,74 +100,71 @@
                     <div class="form-group row">
                          <div class="form-group col-sm">
                               <label for="sprayWater">Spray Water</label>
-                              <select class="form-control form-control-sm" id="sprayWater" class="sprayWater">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
+                              <select class="form-control form-control-sm" id="sprayWater" name="sprayWater">
+                                   <option value="">Pilih ...</option>
+                                   <option value="1">Ada</option>
+                                   <option value="0">Tidak Ada</option>
                               </select>
+                              <?= form_error('sprayWater', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph6">GPH 6</label>
-                              <select class="form-control form-control-sm" id="gph6" class="gph6">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph6" name="gph6" value="<?= $momitoringmom['gph6']; ?>">
+                              <?= form_error('gph6', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph7">GPH 7</label>
-                              <select class="form-control form-control-sm" id="gph7" class="gph7">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph7" name="gph7" value="<?= $momitoringmom['gph7']; ?>">
+                              <?= form_error('gph7', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph8">GPH 8</label>
-                              <select class="form-control form-control-sm" id="gph8" class="gph8">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph8" name="gph8" value="<?= $momitoringmom['gph8']; ?>">
+                              <?= form_error('gph8', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                          <div class="form-group col-sm">
                               <label for="gph9">GPH 9</label>
-                              <select class="form-control form-control-sm" id="gph9" class="gph9">
-                                   <option selected>Pilih ...</option>
-                                   <option>Ada</option>
-                                   <option>Tidak Ada</option>
-                              </select>
+                              <input type="text" class="form-control form-control-sm" id="gph9" name="gph9" value="<?= $momitoringmom['gph9']; ?>">
+                              <?= form_error('gph9', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                     </div>
                     <div class="form-group row">
                          <div class="form-group col-sm">
-                              <label for="regulator1">Regulator 1</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator1">
+                              <label for="regulator1_bp2">Regulator 1</label>
+                              <input type="text" class="form-control form-control-sm" id="regulator1_bp2" name="regulator1_bp2" value="<?= $momitoringmom['regulator1_bp2']; ?>">
+                              <?= form_error('regulator1_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
-                         <div class="form-group col-sm">
-                              <label for="regulator2">Regulator 2</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator2">
+                         <div class=" form-group col-sm">
+                              <label for="regulator2_bp2">Regulator 2</label>
+                              <input type="text" class="form-control form-control-sm" id="regulator2_bp2" name="regulator2_bp2" value="<?= $momitoringmom['regulator2_bp2']; ?>">
+                              <?= form_error('regulator2_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
-                         <div class="form-group col-sm">
-                              <label for="regulator3">Regulator 3</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator3">
+                         <div class=" form-group col-sm">
+                              <label for="regulator3_bp2">Regulator 3</label>
+                              <input type="text" class="form-control form-control-sm" id="regulator3_bp2" name="regulator3_bp2" value="<?= $momitoringmom['regulator3_bp2']; ?>">
+                              <?= form_error('regulator3_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
-                         <div class="form-group col-sm">
-                              <label for="regulator4">Regulator 4</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator4">
+                         <div class=" form-group col-sm">
+                              <label for="regulator4_bp2">Regulator 4</label>
+                              <input type="text" class="form-control form-control-sm" id="regulator4_bp2" name="regulator4_bp2" value="<?= $momitoringmom['regulator4_bp2']; ?>">
+                              <?= form_error('regulator4_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
-                         <div class="form-group col-sm">
-                              <label for="regulator5">Regulator 5</label>
-                              <input type="text" class="form-control form-control-sm" id="regulator5">
+                         <div class=" form-group col-sm">
+                              <label for="regulator5_bp2">Regulator 5</label>
+                              <input type="text" class="form-control form-control-sm" id="regulator5_bp2" name="regulator5_bp2" value="<?= $momitoringmom['regulator5_bp2']; ?>">
+                              <?= form_error('regulator5_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
-                         <div class="form-group col-sm">
-                              <label for="mainMotor">Main Motor</label>
-                              <input type="text" class="form-control form-control-sm" id="mainMotor">
+                         <div class=" form-group col-sm">
+                              <label for="mainMotor_bp2">Main Motor</label>
+                              <input type="text" class="form-control form-control-sm" id="mainMotor_bp2" name="mainMotor_bp2" value="<?= $momitoringmom['mainMotor_bp2']; ?>">
+                              <?= form_error('mainMotor_bp2', '<small class="text-danger pl-3">', '</small>'); ?>
                          </div>
                     </div>
-                    <a href="<?= base_url('dashboard') ?>" class="btn btn-outline-secondary">Kembali</a>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href=" <?= base_url('dashboard/detail') ?>" class="btn btn-outline-secondary">Kembali</a>
+                    <input type="submit" name="submit" class="btn btn-primary btn-xm float-right" value="Edit">
+
                </form>
+
           </div>
      </div>
      <!-- /.container-fluid -->

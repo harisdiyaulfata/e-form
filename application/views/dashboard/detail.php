@@ -1,4 +1,4 @@
-<?php var_dump($header); ?>
+<!-- <?php var_dump($header); ?> -->
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -8,16 +8,29 @@
                <h1 class="h3 mb-4 text-gray-800">Detail Data Monitoring Operasional Mesin</h1>
           </div>
           <div class="card-body">
+               <?= form_error('header', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+               <?= $this->session->flashdata('message'); ?>
 
-               <form class="form-inline">
-                    <label for="doc" class="my-1 mr-2">Dokumen</label>
-                    <div class="col-sm-4">
-                         <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
-                    </div>
 
-                    <label for="date" class="col-sm-1 col-form-label">Tanggal</label>
-                    <div class="col-sm-4">
-                         <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+
+               <form action="" method="POST">
+                    <div class="form-group col-sm-4">
+                         <div class="form-group row">
+                              <label for="doc" class="col-sm col-form-label">Dokumen</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
+                              </div>
+                         </div>
+                         <div class="form-group row">
+                              <label for="date" class="col-sm col-form-label">Tanggal</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+                              </div>
+                         </div>
+                         <!-- <hr>
+                         <div class="form-group row">
+                              <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#newEditModal">Edit</a>
+                         </div> -->
                     </div>
                </form>
                <hr>
@@ -38,6 +51,7 @@
                               <th scope="col">Regulator 4</th>
                               <th scope="col">Regulator 5</th>
                               <th scope="col">Main Motor</th>
+                              <th scope="col">Action</th>
 
                          </tr>
                     </thead>
@@ -56,6 +70,9 @@
                                    <td><?= $mm['regulator4_bp1']; ?></td>
                                    <td><?= $mm['regulator5_bp1']; ?></td>
                                    <td><?= $mm['mainMotor_bp1']; ?></td>
+                                   <td>
+                                        <a href="<?= base_url('dashboard/edit/' . $mm['id_mom']) ?>" class="badge badge-success" name="id_mom">Edit</a>
+                                   </td>
                               </tr>
                          <?php endforeach; ?>
                     </tbody>
@@ -106,3 +123,36 @@
 
 </div>
 <!-- End of Main Content -->
+
+<!-- Modal -->
+<div class="modal fade" id="newEditModal" tabindex="-1" role="dialog" aria-labelledby="newEditModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title" id="newEditModalLabel">Pilih Edit Data berdasarkan Jam</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+               </div>
+               <form action="<?= base_url('dashboard/edit') ?>" method="POST">
+                    <div class="modal-body">
+                         <div class="form-group">
+
+                              <select class="form-control form-control-sm" id="id_mom" name="id_mom">
+                                   <?php $i = 1; ?>
+                                   <?php foreach ($momitoringmom as $mm) : ?>
+                                        <option value="<?= $mm['id_mom'] ?>"><?= $mm['jam'] ?></option>
+                                        <?php $i++; ?>
+                                   <?php endforeach; ?>
+                              </select>
+
+                         </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+               </form>
+          </div>
+     </div>
+</div>
