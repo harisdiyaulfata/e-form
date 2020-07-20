@@ -3,11 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
-     // public function __construct()
-     // {
-     //      parent::__construct();
-     //      $this->load->model('Dashboard_model', 'dashboard');
-     // }
 
      public function index()
      {
@@ -122,10 +117,10 @@ class Dashboard extends CI_Controller
           }
      }
 
-     public function edit($id_header)
+     public function edit()
      {
-          $id_mom = $this->input->post('id_mom', true);
-          // $id_header = $this->input->post('id_header', true);
+          $id_mom = $_POST['id_mom'];
+          $id_header = $_POST['id_header'];
           $data['title'] = 'Edit MOM';
           $data['user'] = $this->dashboard_model->getSession();
           $data['header'] = $this->dashboard_model->getIdHeader($id_header);
@@ -162,7 +157,6 @@ class Dashboard extends CI_Controller
                $this->load->view('dashboard/edit', $data);
                $this->load->view('tampilan/footer');
           } else {
-               $id = $data['momitoringmom']['id_mom'];
                $dt = array(
                     'id_mom' => $id_mom,
                     'header_id' => $id_header,

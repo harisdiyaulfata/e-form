@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jul 2020 pada 20.11
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.7
+-- Generation Time: Jul 20, 2020 at 11:32 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `header`
+-- Table structure for table `header`
 --
 
 CREATE TABLE `header` (
@@ -38,28 +38,29 @@ CREATE TABLE `header` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `header`
+-- Dumping data for table `header`
 --
 
 INSERT INTO `header` (`id_header`, `doc`, `date`, `createdBy`, `createdDate`, `updatedBy`, `updatedDate`) VALUES
 (7, 'MOM/DRP/20/20', '2020-07-20', 1, '2020-07-20', NULL, NULL),
-(8, 'MOM/DRP/20/20', '2020-07-21', 1, '2020-07-21', NULL, NULL);
+(8, 'MOM/DRP/20/20', '2020-07-21', 1, '2020-07-21', NULL, NULL),
+(9, 'MOM/DRP/20/20', '2020-07-22', 1, '2020-07-22', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `momitoringmom`
+-- Table structure for table `momitoringmom`
 --
 
 CREATE TABLE `momitoringmom` (
-  `id` int(11) NOT NULL,
+  `id_mom` int(11) NOT NULL,
   `header_id` int(11) NOT NULL,
   `jam` time NOT NULL,
-  `gph1` tinyint(1) NOT NULL,
-  `gph2` tinyint(1) NOT NULL,
-  `gph3` tinyint(1) NOT NULL,
-  `gph4` tinyint(1) NOT NULL,
-  `gph5` tinyint(1) NOT NULL,
+  `gph1` float(3,2) NOT NULL,
+  `gph2` float(3,2) NOT NULL,
+  `gph3` float(3,2) NOT NULL,
+  `gph4` float(3,2) NOT NULL,
+  `gph5` float(3,2) NOT NULL,
   `regulator1_bp1` int(11) NOT NULL,
   `regulator2_bp1` int(11) NOT NULL,
   `regulator3_bp1` int(11) NOT NULL,
@@ -67,10 +68,10 @@ CREATE TABLE `momitoringmom` (
   `regulator5_bp1` int(11) NOT NULL,
   `mainMotor_bp1` int(11) NOT NULL,
   `sprayWater` tinyint(1) NOT NULL,
-  `gph6` tinyint(1) NOT NULL,
-  `gph7` tinyint(1) NOT NULL,
-  `gph8` tinyint(1) NOT NULL,
-  `gph9` tinyint(1) NOT NULL,
+  `gph6` float(3,2) NOT NULL,
+  `gph7` float(3,2) NOT NULL,
+  `gph8` float(3,2) NOT NULL,
+  `gph9` float(3,2) NOT NULL,
   `regulator1_bp2` int(11) NOT NULL,
   `regulator2_bp2` int(11) NOT NULL,
   `regulator3_bp2` int(11) NOT NULL,
@@ -80,17 +81,22 @@ CREATE TABLE `momitoringmom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `momitoringmom`
+-- Dumping data for table `momitoringmom`
 --
 
-INSERT INTO `momitoringmom` (`id`, `header_id`, `jam`, `gph1`, `gph2`, `gph3`, `gph4`, `gph5`, `regulator1_bp1`, `regulator2_bp1`, `regulator3_bp1`, `regulator4_bp1`, `regulator5_bp1`, `mainMotor_bp1`, `sprayWater`, `gph6`, `gph7`, `gph8`, `gph9`, `regulator1_bp2`, `regulator2_bp2`, `regulator3_bp2`, `regulator4_bp2`, `regulator5_bp2`, `mainMotor_bp2`) VALUES
-(6, 7, '07:00:00', 1, 1, 1, 1, 1, 5, 2, 2, 2, 2, 23, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 34),
-(7, 7, '08:00:00', 1, 0, 1, 1, 0, 5, 2, 2, 2, 2, 44, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 43);
+INSERT INTO `momitoringmom` (`id_mom`, `header_id`, `jam`, `gph1`, `gph2`, `gph3`, `gph4`, `gph5`, `regulator1_bp1`, `regulator2_bp1`, `regulator3_bp1`, `regulator4_bp1`, `regulator5_bp1`, `mainMotor_bp1`, `sprayWater`, `gph6`, `gph7`, `gph8`, `gph9`, `regulator1_bp2`, `regulator2_bp2`, `regulator3_bp2`, `regulator4_bp2`, `regulator5_bp2`, `mainMotor_bp2`) VALUES
+(6, 7, '07:00:00', 1.00, 1.00, 1.00, 1.00, 1.00, 5, 2, 2, 2, 2, 23, 1, 1.00, 1.00, 1.00, 1.00, 2, 2, 2, 2, 2, 34),
+(7, 7, '08:00:00', 1.00, 0.00, 1.00, 1.00, 0.00, 5, 2, 2, 2, 2, 44, 1, 0.00, 1.00, 1.00, 1.00, 2, 2, 2, 2, 2, 43),
+(8, 7, '09:00:00', 2.00, 2.00, 2.00, 2.00, 2.00, 3, 3, 3, 3, 4, 10, 1, 2.00, 2.00, 2.00, 2.00, 4, 2, 3, 2, 3, 40),
+(9, 8, '06:00:00', 2.00, 2.00, 2.00, 2.00, 2.00, 2, 3, 1, 3, 4, 33, 1, 2.00, 2.00, 2.00, 2.00, 2, 2, 3, 2, 3, 23),
+(10, 8, '08:00:00', 2.00, 2.30, 2.00, 2.00, 3.00, 2, 3, 3, 3, 3, 24, 1, 2.00, 2.00, 2.00, 2.00, 2, 2, 2, 2, 2, 35),
+(11, 8, '09:00:00', 3.00, 3.00, 3.00, 3.00, 4.00, 2, 3, 3, 4, 4, 43, 1, 3.00, 3.00, 2.00, 3.00, 2, 3, 1, 4, 3, 33),
+(12, 9, '06:00:00', 2.00, 2.30, 2.00, 2.00, 2.00, 2, 3, 1, 3, 3, 33, 1, 3.00, 2.00, 2.00, 3.00, 4, 2, 3, 4, 2, 23);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -105,7 +111,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `date_created`) VALUES
@@ -116,41 +122,41 @@ INSERT INTO `user` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_a
 --
 
 --
--- Indeks untuk tabel `header`
+-- Indexes for table `header`
 --
 ALTER TABLE `header`
   ADD PRIMARY KEY (`id_header`);
 
 --
--- Indeks untuk tabel `momitoringmom`
+-- Indexes for table `momitoringmom`
 --
 ALTER TABLE `momitoringmom`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_mom`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `header`
+-- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `momitoringmom`
+-- AUTO_INCREMENT for table `momitoringmom`
 --
 ALTER TABLE `momitoringmom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_mom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
