@@ -331,6 +331,11 @@ class Dashboard extends CI_Controller
      {
           $data['title'] = 'Detail MOM';
           $data['user'] = $this->dashboard_model->getSession();
-          $data['momitoringmom'] = $this->dashboard_model->getDetail($id_header);
+          $dt['momitoringmom'] = $this->dashboard_model->getDetail($id_header);
+
+          $this->load->library('pdfgenerator');
+          $html = $this->load->view('dashboard/table_report', $dt, true);
+          $filename = 'report_' . time();
+          $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
      }
 }
