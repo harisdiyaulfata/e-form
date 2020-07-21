@@ -10,8 +10,8 @@
           <div class="card-body">
 
                <form action="" method="POST">
-                    <input type="text" name="id_mom" value="<?= $momitoringmom['id_mom'] ?>">
-                    <input type="text" name="id_header" value="<?= $momitoringmom['id_header'] ?>">
+                    <input type="hidden" name="id_mom" value="<?= $momitoringmom['id_mom'] ?>">
+                    <input type="hidden" name="id_header" value="<?= $momitoringmom['id_header'] ?>">
                     <div class="form-group">
 
                          <div class="form-group row col-5">

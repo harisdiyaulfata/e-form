@@ -14,24 +14,34 @@
 
 
                <form action="" method="POST">
-                    <div class="form-group col-sm-4">
-                         <div class="form-group row">
-                              <label for="doc" class="col-sm col-form-label">Dokumen</label>
-                              <div class="col-sm">
-                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
-                              </div>
+                    <div class="form-group row col-sm-9">
+                         <!-- <div class="form-group row"> -->
+                         <label for="doc" class="col-sm-2 col-form-label">Dokumen</label>
+                         <div class="col-sm">
+                              <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
                          </div>
-                         <div class="form-group row">
-                              <label for="date" class="col-sm col-form-label">Tanggal</label>
-                              <div class="col-sm">
-                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
-                              </div>
+                         <!-- </div>
+                         <div class="form-group row"> -->
+                         <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                         <div class="col-sm">
+                              <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
                          </div>
-                         <!-- <hr>
-                         <div class="form-group row">
-                              <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#newEditModal">Edit</a>
-                         </div> -->
+
+                         <div class="form-group row right">
+                              <div class="col-sm-5">
+                                   <label class="col-sm col-form-label">Laporan</label>
+                              </div>
+                              <div class="col-sm">
+                                   <a href="<?= base_url('dashboard/laporanExcel/' . $header['id_header']) ?>" class="btn btn-outline-success" name="id_header">Excel</a>
+                              </div>
+                              <div class="col-sm">
+                                   <a href="<?= base_url('dashboard/laporanPDF/' . $header['id_header']) ?>" class="btn btn-outline-primary" name="id_header">PDF</a>
+                              </div>
+                              <!-- <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#newEditModal">Edit</a> -->
+                         </div>
+                         <!-- </div> -->
                     </div>
+
                </form>
                <hr>
                <h6 class="h5 mb-5 text-gray-800">Belt Press I</h6>

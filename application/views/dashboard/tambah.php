@@ -1,4 +1,4 @@
-<?php var_dump($header); ?>
+<!-- <?php var_dump($header); ?> -->
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
