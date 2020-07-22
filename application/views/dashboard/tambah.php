@@ -28,7 +28,7 @@
                          <div class="form-group row col-5">
                               <label for="jam" class="col-sm col-form-label">Jam</label>
                               <div class="col-sm">
-                                   <input type="time" class="form-control" id="jam" name="jam" value="<?= set_value('jam'); ?>">
+                                   <input type="time" class="form-control" id="jam" name="jam" value="<?= set_value('jam') . date('H:i'); ?>">
                                    <?= form_error('jam', '<small class="text-danger pl-3">', '</small>'); ?>
                               </div>
                          </div>

@@ -214,7 +214,6 @@ class Dashboard extends CI_Controller
      {
           $data['title'] = 'Detail MOM';
           $data['user'] = $this->dashboard_model->getSession();
-
           $data['momitoringmom'] = $this->dashboard_model->getDetail($id_header);
 
           // Create new Spreadsheet object
@@ -222,53 +221,163 @@ class Dashboard extends CI_Controller
 
           // Set document properties
           // $spreadsheet->getProperties()
-          //      ->setCreator($header->name . ' - Laporan MOM')
-          //      ->setLastModifiedBy($header->name . ' - Laporan MOM')
-          //      ->setTitle('Laporan' . $momitoringmom->doc)
-          //      ->setSubject('Laporan' . $momitoringmom->doc)
+          //      ->setCreator($data['momitoringmom'][0]['name'] . ' - Laporan MOM')
+          //      ->setLastModifiedBy($data['momitoringmom'][0]['name'] . ' - Laporan MOM')
+          //      ->setTitle('Laporan' . $data['momitoringmom'][0]['doc'])
+          //      ->setSubject('Laporan' . $data['momitoringmom'][0]['doc'])
           //      ->setDescription('Membuat Laporan Monitoring Operational Mesin')
           //      ->setKeywords('office 2007 openxml php')
           //      ->setCategory('Test result file');
 
-          $spreadsheet->setActiveSheetIndex(0)
-               ->setCellValue('K1', 'Doc')
-               ->setCellValue('K2', 'Tgl')
-               ->setCellValue('A4', 'Jam')
-               ->setCellValue('B4', 'GPH 1')
-               ->setCellValue('C4', 'GPH 2')
-               ->setCellValue('D4', 'GPH 3')
-               ->setCellValue('E4', 'GPH 4')
-               ->setCellValue('F4', 'GPH 5')
-               ->setCellValue('G4', 'Regulator 1')
-               ->setCellValue('H4', 'Regulator 2')
-               ->setCellValue('I4', 'Regulator 3')
-               ->setCellValue('J4', 'Regulator 4')
-               ->setCellValue('K4', 'Regulator 5')
-               ->setCellValue('L4', 'Main Motor')
-               ->setCellValue('A20', 'Jam')
-               ->setCellValue('B20', 'Spray Water')
-               ->setCellValue('C20', 'GPH 6')
-               ->setCellValue('D20', 'GPH 7')
-               ->setCellValue('E20', 'GPH 8')
-               ->setCellValue('F20', 'GPH 9')
-               ->setCellValue('G20', 'Regulator 1')
-               ->setCellValue('H20', 'Regulator 2')
-               ->setCellValue('I20', 'Regulator 3')
-               ->setCellValue('J20', 'Regulator 4')
-               ->setCellValue('K20', 'Regulator 5')
-               ->setCellValue('L20', 'Main Motor');
+          $borderAll = array(
+               'borders' => array(
+                    'allBorders' => array(
+                         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                         'color' => array('argb' => '000000'),
+                    ),
+               ),
+          );
+
+          $borderOutline = array(
+               'borders' => array(
+                    'outline' => array(
+                         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                         'color' => array('argb' => '000000'),
+                    ),
+               ),
+          );
+
+          $sheet = $spreadsheet->getActiveSheet();
+          $sheet->getColumnDimension('A')->setWidth('8');
+          $sheet->getColumnDimension('B')->setWidth('6.43');
+          $sheet->getColumnDimension('C')->setWidth('6.43');
+          $sheet->getColumnDimension('D')->setWidth('6.43');
+          $sheet->getColumnDimension('E')->setWidth('6.43');
+          $sheet->getColumnDimension('F')->setWidth('6.43');
+          $sheet->getColumnDimension('G')->setWidth('13');
+          $sheet->getColumnDimension('H')->setWidth('13');
+          $sheet->getColumnDimension('I')->setWidth('13');
+          $sheet->getColumnDimension('J')->setWidth('13');
+          $sheet->getColumnDimension('K')->setWidth('13');
+          $sheet->getColumnDimension('L')->setWidth('13');
+
+          $sheet->getStyle('A1:L61')->applyFromArray($borderAll);
+          $sheet->getStyle('A62:L63')->applyFromArray($borderOutline);
+
+          $sheet->getStyle('A8:L32')->getAlignment()->setHorizontal('center');
+          $sheet->getStyle('A37:L61')->getAlignment()->setHorizontal('center');
+
+          $sheet->getStyle('C1')->getFont()->setBold(true)->setSize('14');
+          $sheet->getStyle('A3:C3')->getFont()->setBold(true);
+
+
+          $sheet->mergeCells('A1:B2');
+          $sheet->mergeCells('A3:B3');
+          $sheet->mergeCells('A4:A7');
+          $sheet->mergeCells('A33:A36');
+          $sheet->mergeCells('A62:B63');
+
+          $sheet->mergeCells('B4:L4');
+          $sheet->mergeCells('B5:F6');
+          $sheet->mergeCells('B33:L33');
+          $sheet->mergeCells('B34:B36');
+
+          $sheet->mergeCells('C1:J2');
+          $sheet->mergeCells('C3:J3');
+          $sheet->mergeCells('C34:F35');
+          $sheet->mergeCells('C62:L62');
+          $sheet->mergeCells('C63:L63');
+
+          $sheet->mergeCells('G5:L5');
+          $sheet->mergeCells('G6:G7');
+          $sheet->mergeCells('G34:L34');
+          $sheet->mergeCells('G35:G36');
+
+          $sheet->mergeCells('H6:H7');
+          $sheet->mergeCells('H35:H36');
+
+          $sheet->mergeCells('I6:I7');
+          $sheet->mergeCells('I35:I36');
+
+          $sheet->mergeCells('J6:J7');
+          $sheet->mergeCells('J35:J36');
+
+          $sheet->mergeCells('K1:L1');
+          $sheet->mergeCells('K2:L2');
+          $sheet->mergeCells('K3:L3');
+          $sheet->mergeCells('K6:K7');
+          $sheet->mergeCells('K35:K36');
+
+          $sheet->mergeCells('L6:L7');
+          $sheet->mergeCells('L35:L36');
+
+          $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+          $drawing->setName('Paid');
+          $drawing->setDescription('Paid');
+          $drawing->setPath('assets\img\logoPS.jpg'); // put your path and image here
+          $drawing->setCoordinates('A1');
+          $drawing->setHeight(40)->setOffsetX(30);
+          $drawing->setWorksheet($spreadsheet->getActiveSheet());
+
+          $ps = $spreadsheet->setActiveSheetIndex(0);
+          $ps->setCellValue('A3', 'JUDUL')->getStyle('A3')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('A4', 'Jam')->getStyle('A4')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('A33', 'Jam')->getStyle('A33')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('A62', 'KETERANGAN')->getStyle('A62')->getAlignment()->setHorizontal('center')->setVertical('top');
+
+          $ps->setCellValue('B4', 'LINE HIJAU BELT PRESS I')->getStyle('B4')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('B5', 'GRINDER (1.8 - 4 mm)')->getStyle('B5')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('B7', 'GPH 1')->getStyle('B7')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('B33', 'LINE HIJAU BELT PRESS II')->getStyle('B33')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('B34', 'Spray Water SB07')->getStyle('B34')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('C1', 'PT. PULAU SAMBU')->getStyle('C1')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('C3', 'MONITORING OPERASIONAL MESIN')->getStyle('C3')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('C7', 'GPH 2')->getStyle('C7')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('C36', 'GPH 6')->getStyle('C36')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('C34', 'GRINDER (1.8 - 4 mm)')->getStyle('C34')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('C62', '- : Tidak ada spray water')->getStyle('C62')->getAlignment()->setVertical('center');
+          $ps->setCellValue('C63', 'v : Ada spray water')->getStyle('C63')->getAlignment()->setVertical('center');
+
+          $ps->setCellValue('D7', 'GPH 3')->getStyle('D7')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('D36', 'GPH 7')->getStyle('D36')->getAlignment()->setHorizontal('center')->setVertical('center');
+
+          $ps->setCellValue('E7', 'GPH 4')->getStyle('E7')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('E36', 'GPH 8')->getStyle('E36')->getAlignment()->setHorizontal('center')->setVertical('center');
+
+          $ps->setCellValue('F7', 'GPH 5')->getStyle('F7')->getAlignment()->setHorizontal('center')->setVertical('center');
+          $ps->setCellValue('F36', 'GPH 9')->getStyle('F36')->getAlignment()->setHorizontal('center')->setVertical('center');
+
+          $ps->setCellValue('G5', 'SETTING ROLLER FEEDING 2 (1 - 5 cm) :')->getStyle('G5')->getAlignment()->setVertical('center');
+          $ps->setCellValue('G6', 'Regulator 1 Max 6 Bar')->getStyle('G6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('G34', 'SETTING ROLLER FEEDING 2 (1 - 5 cm) :')->getStyle('G34')->getAlignment()->setVertical('center');
+          $ps->setCellValue('G35', 'Regulator 1 Max 6 Bar')->getStyle('G35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('H6', 'Regulator 2 Max 6 Bar')->getStyle('H6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('H35', 'Regulator 2 Max 6 Bar')->getStyle('H35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('I6', 'Regulator 3 Max 1-3 Bar')->getStyle('I6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('I35', 'Regulator 3 Max 1-3 Bar')->getStyle('I35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('J6', 'Regulator 4 Max 5 Bar')->getStyle('J6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('J35', 'Regulator 4 Max 5 Bar')->getStyle('J35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('K6', 'Regulator 5 Max 5 Bar')->getStyle('K6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('K35', 'Regulator 5 Max 5 Bar')->getStyle('K35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+
+          $ps->setCellValue('L6', 'Main Motor Rpm 1 - 50 Hz')->getStyle('L6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('L35', 'Main Motor Rpm 1 - 50 Hz')->getStyle('L35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
           $spreadsheet->setActiveSheetIndex(0)
-               ->setCellValue('L1', $data['momitoringmom'][0]['doc'])
-               ->setCellValue('L2', $data['momitoringmom'][0]['date']);
+               ->setCellValue('K1', 'Doc     : ' . $data['momitoringmom'][0]['doc'])
+               ->setCellValue('K2', 'Tgl       : ' . $data['momitoringmom'][0]['date']);
 
           $a = count($data['momitoringmom']);
-
           for ($i = 0; $i < $a; $i++) {
                $dt = $data['momitoringmom'];
 
-               $kolom_bp1 = 5;
-               $kolom_bp2 = 21;
+               $kolom_bp1 = 8;
+               $kolom_bp2 = 37;
                foreach ($dt as $d) {
                     $spreadsheet->setActiveSheetIndex(0)
                          ->setCellValue('A' . $kolom_bp1, $d['jam'])
@@ -309,20 +418,6 @@ class Dashboard extends CI_Controller
 
           $writer->save('php://output');
 
-          // $spreadsheet->getActiveSheet()->setTitle('Report Excel ' . date('d-m-Y H'));
-
-          // // Set active sheet index to the first sheet, so Excel opens this as the first sheet
-          // $spreadsheet->setActiveSheetIndex(0);
-
-          // Redirect output to a client’s web browser (Xlsx)
-          // header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-          // header('Content-Disposition: attachment;filename="Report Excel.xlsx"');
-          // header('Cache-Control: max-age=0');
-          // // If you're serving to IE 9, then the following may be needed
-          // header('Cache-Control: max-age=1');
-
-          // $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-          // $writer->save('php://output');
           // exit;
 
      }

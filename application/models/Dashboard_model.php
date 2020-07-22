@@ -37,7 +37,7 @@ class Dashboard_model extends CI_Model
 
      public function getDetail($id_header)
      {
-          $this->db->select('*', 'header.doc', 'header.date', 'header.id');
+          $this->db->select('*', 'header.doc', 'header.date', 'header.id', 'header.name');
           $this->db->from('header');
           $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id_header');
           $this->db->where('momitoringmom.header_id', $id_header);
