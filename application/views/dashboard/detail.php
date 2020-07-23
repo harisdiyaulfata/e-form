@@ -12,15 +12,16 @@
                <?= $this->session->flashdata('message'); ?>
 
                <form action="" method="POST">
-                    <div class="form-group row col-sm">
-                         <!-- <div class="form-group row"> -->
-                         <label for="doc" class="col-sm-1 col-form-label">Dokumen</label>
-                         <div class="col-sm">
-                              <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
-                         </div>
-                         <label for="date" class="col-sm-1 col-form-label">Tanggal</label>
-                         <div class="col-sm">
-                              <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+                    <div class="form-group row">
+                         <div class="form-group row col-sm">
+                              <label for="doc" class="col-sm-2 col-form-label">Dokumen</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
+                              </div>
+                              <label for="date" class="col-sm-2 col-form-label">Tanggal</label>
+                              <div class="col-sm">
+                                   <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
+                              </div>
                          </div>
                          <div class="form-group row">
                               <div class="col-sm-5">
