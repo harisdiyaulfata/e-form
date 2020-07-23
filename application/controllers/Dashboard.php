@@ -263,12 +263,17 @@ class Dashboard extends CI_Controller
 
           $sheet->getStyle('A1:L61')->applyFromArray($borderAll);
           $sheet->getStyle('A62:L63')->applyFromArray($borderOutline);
+          $sheet->getStyle('A64:L64')->applyFromArray($borderOutline);
 
           $sheet->getStyle('A8:L32')->getAlignment()->setHorizontal('center');
           $sheet->getStyle('A37:L61')->getAlignment()->setHorizontal('center');
 
           $sheet->getStyle('C1')->getFont()->setBold(true)->setSize('14');
+          $sheet->getStyle('A1:L7')->getFont()->setBold(true);
           $sheet->getStyle('A3:C3')->getFont()->setBold(true);
+          $sheet->getStyle('A33:L36')->getFont()->setBold(true);
+          $sheet->getStyle('A62')->getFont()->setBold(true)->setUnderline(true);
+          $sheet->getStyle('A64:G64')->getFont()->setBold(true);
 
 
           $sheet->mergeCells('A1:B2');
@@ -276,6 +281,7 @@ class Dashboard extends CI_Controller
           $sheet->mergeCells('A4:A7');
           $sheet->mergeCells('A33:A36');
           $sheet->mergeCells('A62:B63');
+          $sheet->mergeCells('A64:F64');
 
           $sheet->mergeCells('B4:L4');
           $sheet->mergeCells('B5:F6');
@@ -292,6 +298,7 @@ class Dashboard extends CI_Controller
           $sheet->mergeCells('G6:G7');
           $sheet->mergeCells('G34:L34');
           $sheet->mergeCells('G35:G36');
+          $sheet->mergeCells('G64:L64');
 
           $sheet->mergeCells('H6:H7');
           $sheet->mergeCells('H35:H36');
@@ -324,6 +331,7 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('A4', 'Jam')->getStyle('A4')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('A33', 'Jam')->getStyle('A33')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('A62', 'KETERANGAN')->getStyle('A62')->getAlignment()->setHorizontal('center')->setVertical('top');
+          $ps->setCellValue('A64', 'Mulai Berlaku : 16.05.2019')->getStyle('A64')->getAlignment()->setHorizontal('left')->setVertical('top');
 
           $ps->setCellValue('B4', 'LINE HIJAU BELT PRESS I')->getStyle('B4')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('B5', 'GRINDER (1.8 - 4 mm)')->getStyle('B5')->getAlignment()->setHorizontal('center')->setVertical('center');
@@ -352,6 +360,7 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('G6', 'Regulator 1 Max 6 Bar')->getStyle('G6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
           $ps->setCellValue('G34', 'SETTING ROLLER FEEDING 2 (1 - 5 cm) :')->getStyle('G34')->getAlignment()->setVertical('center');
           $ps->setCellValue('G35', 'Regulator 1 Max 6 Bar')->getStyle('G35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('G64', 'FRM-FSS-181-16')->getStyle('G64')->getAlignment()->setHorizontal('right')->setVertical('top');
 
           $ps->setCellValue('H6', 'Regulator 2 Max 6 Bar')->getStyle('H6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
           $ps->setCellValue('H35', 'Regulator 2 Max 6 Bar')->getStyle('H35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
@@ -362,6 +371,7 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('J6', 'Regulator 4 Max 5 Bar')->getStyle('J6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
           $ps->setCellValue('J35', 'Regulator 4 Max 5 Bar')->getStyle('J35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
+          $ps->setCellValue('K3', 'Hal      :')->getStyle('K3')->getAlignment()->setHorizontal('left')->setVertical('center');
           $ps->setCellValue('K6', 'Regulator 5 Max 5 Bar')->getStyle('K6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
           $ps->setCellValue('K35', 'Regulator 5 Max 5 Bar')->getStyle('K35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
@@ -410,16 +420,13 @@ class Dashboard extends CI_Controller
           }
 
           $writer = new Xlsx($spreadsheet);
-          $filename = 'laporan-' . $data['momitoringmom'][0]['doc'] . '-' . $data['momitoringmom'][0]['date'];
+          $filename = 'Laporan-' . $data['momitoringmom'][0]['doc'] . '-' . $data['momitoringmom'][0]['date'] . '-' . time();
 
           header('Content-Type: application/vnd.ms-excel');
           header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
           header('Cache-Control: max-age=0');
 
           $writer->save('php://output');
-
-          // exit;
-
      }
 
      public function laporanPDF($id_header)
@@ -430,7 +437,7 @@ class Dashboard extends CI_Controller
 
           $this->load->library('pdfgenerator');
           $html = $this->load->view('dashboard/table_report', $dt, true);
-          $filename = 'report_' . time();
-          $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
+          $filename = 'Laporan-' . $dt['momitoringmom'][0]['doc'] . time();
+          $this->pdfgenerator->generate($html, $filename, true, 'A3', 'portrait');
      }
 }
