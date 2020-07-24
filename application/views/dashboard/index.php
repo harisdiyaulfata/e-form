@@ -38,7 +38,7 @@
                                    <td><?= $h['updatedDate']; ?></td> -->
                                    <td>
                                         <a href="<?= base_url('dashboard/detail/' . $h['id_header']) ?>" class="badge badge-info">Detail</a>
-                                        <a href="<?= base_url('dashboard/tambah/' . $h['id_header']) ?>" class="badge badge-success">Add</a>
+                                        <!-- <a href="<?= base_url('dashboard/tambah/' . $h['id_header']) ?>" class="badge badge-success">Add</a> -->
                                         <!-- <a href="<?= base_url('dashboard/edit/' . $h['id_header']) ?>" class="badge badge-success">Edit</a>
                                         <a href="<?= base_url('dashboard/delete/' . $h['id_header']) ?>" class="badge badge-danger">Delete</a> -->
                                    </td>

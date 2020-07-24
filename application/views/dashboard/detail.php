@@ -13,7 +13,7 @@
 
                <form action="" method="POST">
                     <div class="form-group row">
-                         <div class="form-group row col-sm">
+                         <div class="form-group row col-sm-8">
                               <label for="doc" class="col-sm-2 col-form-label">Dokumen</label>
                               <div class="col-sm">
                                    <input type="text" readonly class="form-control" id="doc" name="doc" value="<?= $header['doc']; ?>">
@@ -23,24 +23,21 @@
                                    <input type="text" readonly class="form-control" id="date" name="date" value="<?= $header['date']; ?>">
                               </div>
                          </div>
-                         <div class="form-group row">
-                              <div class="col-sm-5">
-                                   <label class="col-sm col-form-label">Laporan</label>
-                              </div>
-                              <div class="col-sm">
-                                   <a href="<?= base_url('dashboard/laporanExcel/' . $header['id_header']) ?>" class="btn btn-outline-success" name="id_header">Excel</a>
-                              </div>
-                              <div class="col-sm">
-                                   <a href="<?= base_url('dashboard/laporanPDF/' . $header['id_header']) ?>" class="btn btn-outline-primary" name="id_header">PDF</a>
-                              </div>
-                         </div>
+
                     </div>
                </form>
                <hr>
-               <h6 class="h5 mb-5 text-gray-800">Belt Press I</h6>
 
+               <a href="<?= base_url('dashboard/tambah/' . $header['id_header']) ?>" class="btn btn-success mb-3">Add New</a>
+               <a href="<?= base_url('dashboard/laporanExcel/' . $header['id_header']) ?>" class="btn btn-outline-success mb-3" name="id_header">Excel</a>
+               <a href="<?= base_url('dashboard/laporanPDF/' . $header['id_header']) ?>" class="btn btn-outline-primary mb-3" name="id_header">PDF</a>
                <table class="table">
                     <thead>
+                         <tr>
+                              <th colspan="13">
+                                   LINE HIJAU BELT PRESS I
+                              </th>
+                         </tr>
                          <tr>
                               <th scope="col">Jam</th>
                               <th scope="col">GPH 1</th>
@@ -79,12 +76,12 @@
                               </tr>
                          <?php endforeach; ?>
                     </tbody>
-               </table>
-
-               <hr>
-               <h6 class="h5 mb-5 text-gray-800">Belt Press II</h6>
-               <table class="table">
                     <thead>
+                         <tr>
+                              <th colspan="13">
+                                   LINE HIJAU BELT PRESS II
+                              </th>
+                         </tr>
                          <tr>
                               <th scope="col">Jam</th>
                               <th scope="col">Spray Water</th>
@@ -105,7 +102,16 @@
                          <?php foreach ($momitoringmom as $mm) : ?>
                               <tr>
                                    <th><?= $mm['jam']; ?></th>
-                                   <td><?= $mm['sprayWater']; ?></td>
+                                   <td>
+                                        <?php
+                                        if ($mm['sprayWater'] == 1) {
+                                             echo "Ada";
+                                        } else {
+                                             echo "Tidak Ada";
+                                        }
+
+                                        ?>
+                                   </td>
                                    <td><?= $mm['gph6']; ?></td>
                                    <td><?= $mm['gph7']; ?></td>
                                    <td><?= $mm['gph8']; ?></td>

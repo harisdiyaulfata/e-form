@@ -4,10 +4,6 @@
 <head>
      <title></title>
      <style type="text/css">
-          /* * {
-               margin: 1px;
-          } */
-
           table {
                border-collapse: collapse;
           }
@@ -22,11 +18,6 @@
 </head>
 
 <body>
-     <!-- In production server. If you choose this, then comment the local server and uncomment this one-->
-     <!-- <img src="<?php // echo $_SERVER['DOCUMENT_ROOT']."/media/dist/img/no-signal.png"; 
-                    ?>" alt=""> -->
-     <!-- In your local server -->
-     <!-- <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . "/ci-dompdf8/media/dist/img/no-signal.png"; ?>" alt=""> -->
      <table>
           <thead>
                <tr>

@@ -41,6 +41,7 @@ class Dashboard_model extends CI_Model
           $this->db->from('header');
           $this->db->join('momitoringmom', 'momitoringmom.header_id = header.id_header');
           $this->db->where('momitoringmom.header_id', $id_header);
+          $this->db->order_by('momitoringmom.jam');
           return $this->db->get()->result_array();
      }
 
