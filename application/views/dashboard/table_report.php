@@ -205,7 +205,13 @@
                               <?= $mm['jam']; ?>
                          </td>
                          <td style="text-align:center;">
-                              <?= $mm['sprayWater']; ?>
+                              <?php
+                              if ($mm['sprayWater'] == 1) {
+                                   echo "v";
+                              } else {
+                                   echo "-";
+                              }
+                              ?>
                          </td>
                          <td style="text-align:center;">
                               <?= $mm['gph6']; ?>

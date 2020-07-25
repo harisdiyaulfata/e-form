@@ -344,8 +344,8 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('C7', 'GPH 2')->getStyle('C7')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('C36', 'GPH 6')->getStyle('C36')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('C34', 'GRINDER (1.8 - 4 mm)')->getStyle('C34')->getAlignment()->setHorizontal('center')->setVertical('center');
-          $ps->setCellValue('C62', '- : Tidak ada spray water')->getStyle('C62')->getAlignment()->setVertical('center');
-          $ps->setCellValue('C63', 'v : Ada spray water')->getStyle('C63')->getAlignment()->setVertical('center');
+          $ps->setCellValue('C62', '-  : Tidak ada spray water')->getStyle('C62')->getAlignment()->setVertical('center');
+          $ps->setCellValue('C63', '✓ : Ada spray water')->getStyle('C63')->getAlignment()->setVertical('center');
 
           $ps->setCellValue('D7', 'GPH 3')->getStyle('D7')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('D36', 'GPH 7')->getStyle('D36')->getAlignment()->setHorizontal('center')->setVertical('center');
@@ -403,7 +403,9 @@ class Dashboard extends CI_Controller
                          ->setCellValue('K' . $kolom_bp1, $d['regulator5_bp1'])
                          ->setCellValue('L' . $kolom_bp1, $d['mainMotor_bp1'])
                          ->setCellValue('A' . $kolom_bp2, $d['jam'])
-                         ->setCellValue('B' . $kolom_bp2, $d['sprayWater'])
+
+                         // ->setCellValue('B' . $kolom_bp2, $d['sprayWater'])
+
                          ->setCellValue('C' . $kolom_bp2, $d['gph6'])
                          ->setCellValue('D' . $kolom_bp2, $d['gph7'])
                          ->setCellValue('E' . $kolom_bp2, $d['gph8'])
@@ -414,6 +416,11 @@ class Dashboard extends CI_Controller
                          ->setCellValue('J' . $kolom_bp2, $d['regulator4_bp2'])
                          ->setCellValue('K' . $kolom_bp2, $d['regulator5_bp2'])
                          ->setCellValue('L' . $kolom_bp2, $d['mainMotor_bp2']);
+                    if ($d['sprayWater'] == 1) {
+                         $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $kolom_bp2, '✓');
+                    } else {
+                         $spreadsheet->setActiveSheetIndex(0)->setCellValue('B' . $kolom_bp2, '-');
+                    }
                     $kolom_bp1++;
                     $kolom_bp2++;
                }
