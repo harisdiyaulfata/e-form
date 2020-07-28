@@ -8,4 +8,9 @@ class Auth_model extends CI_Model
           $email = $this->input->post('email');
           return $this->db->get_where('user', ['email' => $email])->row_array();
      }
+
+     public function registration($data)
+     {
+          $this->db->insert('user', $data);
+     }
 }

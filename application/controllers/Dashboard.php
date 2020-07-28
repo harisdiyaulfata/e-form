@@ -248,18 +248,18 @@ class Dashboard extends CI_Controller
           );
 
           $sheet = $spreadsheet->getActiveSheet();
-          $sheet->getColumnDimension('A')->setWidth('8');
-          $sheet->getColumnDimension('B')->setWidth('6.43');
-          $sheet->getColumnDimension('C')->setWidth('6.43');
-          $sheet->getColumnDimension('D')->setWidth('6.43');
-          $sheet->getColumnDimension('E')->setWidth('6.43');
-          $sheet->getColumnDimension('F')->setWidth('6.43');
-          $sheet->getColumnDimension('G')->setWidth('13');
-          $sheet->getColumnDimension('H')->setWidth('13');
-          $sheet->getColumnDimension('I')->setWidth('13');
-          $sheet->getColumnDimension('J')->setWidth('13');
-          $sheet->getColumnDimension('K')->setWidth('13');
-          $sheet->getColumnDimension('L')->setWidth('13');
+          $sheet->getColumnDimension('A')->setWidth('6.29');
+          $sheet->getColumnDimension('B')->setWidth('4.50');
+          $sheet->getColumnDimension('C')->setWidth('4.50');
+          $sheet->getColumnDimension('D')->setWidth('4.50');
+          $sheet->getColumnDimension('E')->setWidth('4.50');
+          $sheet->getColumnDimension('F')->setWidth('4.50');
+          $sheet->getColumnDimension('G')->setWidth('9.20');
+          $sheet->getColumnDimension('H')->setWidth('9.20');
+          $sheet->getColumnDimension('I')->setWidth('9.20');
+          $sheet->getColumnDimension('J')->setWidth('9.20');
+          $sheet->getColumnDimension('K')->setWidth('9.20');
+          $sheet->getColumnDimension('L')->setWidth('9.20');
 
           $sheet->getStyle('A1:L61')->applyFromArray($borderAll);
           $sheet->getStyle('A62:L63')->applyFromArray($borderOutline);
@@ -268,12 +268,14 @@ class Dashboard extends CI_Controller
           $sheet->getStyle('A8:L32')->getAlignment()->setHorizontal('center');
           $sheet->getStyle('A37:L61')->getAlignment()->setHorizontal('center');
 
+          $sheet->getStyle('A1:L64')->getFont()->setSize('8');
           $sheet->getStyle('C1')->getFont()->setBold(true)->setSize('14');
           $sheet->getStyle('A1:L7')->getFont()->setBold(true);
           $sheet->getStyle('A3:C3')->getFont()->setBold(true);
           $sheet->getStyle('A33:L36')->getFont()->setBold(true);
           $sheet->getStyle('A62')->getFont()->setBold(true)->setUnderline(true);
           $sheet->getStyle('A64:G64')->getFont()->setBold(true);
+
 
 
           $sheet->mergeCells('A1:B2');
@@ -323,7 +325,7 @@ class Dashboard extends CI_Controller
           $drawing->setDescription('Paid');
           $drawing->setPath('assets\img\logoPS.jpg'); // put your path and image here
           $drawing->setCoordinates('A1');
-          $drawing->setHeight(40)->setOffsetX(30);
+          $drawing->setHeight(35)->setOffsetX(20)->setOffsetY(5);
           $drawing->setWorksheet($spreadsheet->getActiveSheet());
 
           $ps = $spreadsheet->setActiveSheetIndex(0);
@@ -337,7 +339,7 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('B5', 'GRINDER (1.8 - 4 mm)')->getStyle('B5')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('B7', 'GPH 1')->getStyle('B7')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('B33', 'LINE HIJAU BELT PRESS II')->getStyle('B33')->getAlignment()->setHorizontal('center')->setVertical('center');
-          $ps->setCellValue('B34', 'Spray Water SB07')->getStyle('B34')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('B34', 'Spray water SB07')->getStyle('B34')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
           $ps->setCellValue('C1', 'PT. PULAU SAMBU')->getStyle('C1')->getAlignment()->setHorizontal('center')->setVertical('center');
           $ps->setCellValue('C3', 'MONITORING OPERASIONAL MESIN')->getStyle('C3')->getAlignment()->setHorizontal('center')->setVertical('center');
@@ -375,8 +377,8 @@ class Dashboard extends CI_Controller
           $ps->setCellValue('K6', 'Regulator 5 Max 5 Bar')->getStyle('K6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
           $ps->setCellValue('K35', 'Regulator 5 Max 5 Bar')->getStyle('K35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
-          $ps->setCellValue('L6', 'Main Motor Rpm 1 - 50 Hz')->getStyle('L6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
-          $ps->setCellValue('L35', 'Main Motor Rpm 1 - 50 Hz')->getStyle('L35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('L6', 'Main Motor Rpm 1 - 50Hz')->getStyle('L6')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
+          $ps->setCellValue('L35', 'Main Motor Rpm 1 - 50Hz')->getStyle('L35')->getAlignment()->setHorizontal('center')->setVertical('center')->setWrapText(true);
 
           $spreadsheet->setActiveSheetIndex(0)
                ->setCellValue('K1', 'Doc     : ' . $data['momitoringmom'][0]['doc'])

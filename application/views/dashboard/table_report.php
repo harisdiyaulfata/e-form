@@ -211,6 +211,7 @@
                               } else {
                                    echo "-";
                               }
+
                               ?>
                          </td>
                          <td style="text-align:center;">
