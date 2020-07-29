@@ -4,18 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Report extends CI_Controller
 {
 
-     function index()
-     {
-          $data['onclick_report'] = site_url() . "report/cetak/"; // button report
-          $this->load->view('transaksi_view', $data);
-     }
-
-     function cetak()
+     function cetak($id_header)
      {
           $kodebarang = "A001";
 
           // ambil data dengan memanggil fungsi di model
-          $temp_rec = $this->report_model->transaksi($kodebarang);
+          $temp_rec = $this->report_model->getDetailReportPDF($id_header);
           $num_rows = $temp_rec->num_rows();
 
           if ($num_rows > 0) // jika data ada di database

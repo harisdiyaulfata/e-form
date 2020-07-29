@@ -449,4 +449,200 @@ class Dashboard extends CI_Controller
           $filename = 'Laporan-' . $dt['momitoringmom'][0]['doc'] . time();
           $this->pdfgenerator->generate($html, $filename, true, 'A3', 'portrait');
      }
+
+     public function laporanFPDF($id_header)
+     {
+          $data['title'] = 'Detail MOM';
+          $data['user'] = $this->dashboard_model->getSession();
+          $dt['momitoringmom'] = $this->dashboard_model->getDetail($id_header);
+
+          $pdf = new FPDF('p', 'mm', 'A4');
+          // membuat halaman baru
+          $pdf->AddPage();
+          $pdf->SetFont('Arial', 'B', 12);
+          $pdf->Cell(25, 8, '', 1, 0, 'C');
+          $pdf->Image('.\assets\img\logoPS.jpg', 18, 10.5, 8);
+          $pdf->Cell(130, 8, 'PT. PULAU SAMBU', 1, 0, 'C');
+          $pdf->SetFont('Arial', 'B', 8);
+          $pdf->Cell(35, 4, 'Dok : ' . $dt['momitoringmom'][0]['doc'], 1, 10);
+          $pdf->Cell(35, 4, 'Tgl  : ' . $dt['momitoringmom'][0]['date'], 1, 1);
+          $pdf->Cell(25, 4, 'JUDUL', 1, 0, 'C');
+          $pdf->Cell(130, 4, 'MONITORING OPERASIONAL MESIN', 1, 0, 'C');
+          $pdf->Cell(35, 4, 'Hal  :', 1, 1);
+
+          $pdf->Cell(15, 16, 'Jam', 1, 0, 'C');
+          $pdf->Cell(175, 4, 'LINE HIJAU BELT PRESS I', 1, 10, 'C');
+          $pdf->Cell(55, 8, 'GRINDER (1.8 - 4 mm)', 1, 0, 'C');
+          $pdf->Cell(120, 4, 'SETTING ROLLER FEEDING 2 (1 - 5 mm)', 1, 1, 'L');
+          $pdf->SetY(34);
+          $pdf->SetX(25);
+          $pdf->Cell(11, 4, 'GPH 1', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 2', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 3', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 4', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 5', 1, 0, 'C');
+          $pdf->SetY(30);
+          $pdf->SetX(80);
+          $pdf->MultiCell(20, 4, 'Regulator 1 Max 6 Bar', 1, 'C', false);
+          $pdf->SetY(30);
+          $pdf->SetX(100);
+          $pdf->MultiCell(20, 4, 'Regulator 2 Max 6 Bar', 1, 'C', false);
+          $pdf->SetY(30);
+          $pdf->SetX(120);
+          $pdf->MultiCell(20, 4, 'Regulator 3 Max 1-3 Bar', 1, 'C', false);
+          $pdf->SetY(30);
+          $pdf->SetX(140);
+          $pdf->MultiCell(20, 4, 'Regulator 4 Max 5 Bar', 1, 'C', false);
+          $pdf->SetY(30);
+          $pdf->SetX(160);
+          $pdf->MultiCell(20, 4, 'Regulator 5 Max 5 Bar', 1, 'C', false);
+          $pdf->SetY(30);
+          $pdf->SetX(180);
+          $pdf->MultiCell(20, 4, 'Main Motor Rpm 1-50 Hz', 1, 'C', false);
+
+          $setY = 42;
+          $pdf->SetFont('Arial', '', 8);
+
+          foreach ($dt['momitoringmom'] as $mm) {
+               $pdf->Cell(15, 4, $mm['jam'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph1'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph2'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph3'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph4'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph5'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator1_bp1'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator2_bp1'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator3_bp1'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator4_bp1'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator5_bp1'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['mainMotor_bp1'], 1, 1, 'C');
+          }
+
+          $a = count($dt['momitoringmom']);
+          $b = 26 - $a;
+          $setYy = $setY + (4 * $a);
+
+          for ($i = 0; $i < $b; $i++) {
+               $pdf->Cell(15, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->SetY($setYy);
+               $setYy++;
+               $setYy++;
+               $setYy++;
+               $setYy++;
+          }
+
+          $pdf->SetFont('Arial', 'B', 8);
+          $pdf->Cell(15, 16, 'Jam', 1, 0, 'C');
+          $pdf->Cell(175, 4, 'LINE HIJAU BELT PRESS II', 1, 10, 'C');
+          $pdf->MultiCell(11, 4, 'Spray Water SB07', 1, 'C', false);
+          $pdf->SetY(146);
+          $pdf->SetX(36);
+          $pdf->Cell(44, 8, 'GRINDER (1 - 3.5 mm)', 1, 0, 'C');
+          $pdf->Cell(120, 4, 'SETTING ROLLER FEEDING 2 (1 - 5 mm)', 1, 1, 'L');
+          $pdf->SetY(154);
+          $pdf->SetX(36);
+          $pdf->Cell(11, 4, 'GPH 6', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 7', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 8', 1, 0, 'C');
+          $pdf->Cell(11, 4, 'GPH 9', 1, 0, 'C');
+          $pdf->SetY(150);
+          $pdf->SetX(80);
+          $pdf->MultiCell(20, 4, 'Regulator 1 Max 6 Bar', 1, 'C', false);
+          $pdf->SetY(150);
+          $pdf->SetX(100);
+          $pdf->MultiCell(20, 4, 'Regulator 2 Max 6 Bar', 1, 'C', false);
+          $pdf->SetY(150);
+          $pdf->SetX(120);
+          $pdf->MultiCell(20, 4, 'Regulator 3 Max 1-3 Bar', 1, 'C', false);
+          $pdf->SetY(150);
+          $pdf->SetX(140);
+          $pdf->MultiCell(20, 4, 'Regulator 4 Max 5 Bar', 1, 'C', false);
+          $pdf->SetY(150);
+          $pdf->SetX(160);
+          $pdf->MultiCell(20, 4, 'Regulator 5 Max 5 Bar', 1, 'C', false);
+          $pdf->SetY(150);
+          $pdf->SetX(180);
+          $pdf->MultiCell(20, 4, 'Main Motor Rpm 1-50 Hz', 1, 'C', false);
+
+          $pdf->SetFont('Arial', '', 8);
+
+          foreach ($dt['momitoringmom'] as $mm) {
+               $pdf->Cell(15, 4, $mm['jam'], 1, 0, 'C');
+               if ($mm['sprayWater'] == 1) {
+                    $pdf->SetFont('ZapfDingbats');
+                    $pdf->Cell(11, 4, chr(51), 1, 0, 'C');
+               } else {
+                    $pdf->SetFont('Arial', '', 8);
+                    $pdf->Cell(11, 4, '-', 1, 0, 'C');
+               }
+               $pdf->SetFont('Arial', '', 8);
+               $pdf->Cell(11, 4, $mm['gph6'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph7'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph8'], 1, 0, 'C');
+               $pdf->Cell(11, 4, $mm['gph9'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator1_bp2'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator2_bp2'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator3_bp2'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator4_bp2'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['regulator5_bp2'], 1, 0, 'C');
+               $pdf->Cell(20, 4, $mm['mainMotor_bp2'], 1, 1, 'C');
+          }
+          $setY = 162;
+          $setYy = $setY + (4 * $a);
+
+          for ($i = 0; $i < $b; $i++) {
+               $pdf->Cell(15, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(11, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->Cell(20, 4, '', 1, 0, 'C');
+               $pdf->SetY($setYy);
+               $setYy++;
+               $setYy++;
+               $setYy++;
+               $setYy++;
+          }
+
+          $pdf->SetFont('Arial', 'BU', 8);
+          $pdf->MultiCell(190, 8, '', 1, 'L', false);
+          $pdf->SetY($setYy - 4);
+          $pdf->Cell(26, 4, 'KETERANGAN', 0, 0, 'L');
+          $pdf->SetX(35);
+          $pdf->SetFont('Arial', 'B', 8);
+          $pdf->Cell(5, 4, '-', 0, 0, 'L');
+          $pdf->Cell(40, 4, ': Tidak ada spray water', 0, 0, 'L');
+          $pdf->SetY($setYy);
+          $pdf->SetX(35);
+          $pdf->SetFont('ZapfDingbats');
+          $pdf->Cell(5, 4, chr(51), 0, 0, 'L');
+          $pdf->SetFont('Arial', 'B', 8);
+          $pdf->Cell(40, 4, ': Ada spray water', 0, 0, 'L');
+          $pdf->SetX(7);
+          $pdf->SetY(270);
+          $pdf->Cell(190, 4, 'Mulai Berlaku : 16.05.2019', 1, 0, 'L');
+          $pdf->SetX(7);
+          $pdf->SetY(270);
+          $pdf->Cell(190, 4, 'FRM-FSS-181-16', 0, 0, 'R');
+
+
+          $pdf->Output();
+     }
 }

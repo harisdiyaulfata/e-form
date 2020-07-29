@@ -31,6 +31,8 @@
                <a href="<?= base_url('dashboard/tambah/' . $header['id_header']) ?>" class="btn btn-success mb-3">Add New</a>
                <a href="<?= base_url('dashboard/laporanExcel/' . $header['id_header']) ?>" class="btn btn-outline-success mb-3" name="id_header">Excel</a>
                <a href="<?= base_url('dashboard/laporanPDF/' . $header['id_header']) ?>" class="btn btn-outline-primary mb-3" name="id_header">PDF</a>
+               <a href="<?= base_url('dashboard/laporanFPDF/' . $header['id_header']) ?>" class="btn btn-outline-primary mb-3" name="id_header">FPDF</a>
+
                <table class="table">
                     <thead>
                          <tr>
@@ -105,11 +107,10 @@
                                    <td>
                                         <?php
                                         if ($mm['sprayWater'] == 1) {
-                                             echo "Ada";
+                                             echo "✓";
                                         } else {
-                                             echo "Tidak Ada";
+                                             echo "-";
                                         }
-
                                         ?>
                                    </td>
                                    <td><?= $mm['gph6']; ?></td>
@@ -132,36 +133,3 @@
 
 </div>
 <!-- End of Main Content -->
-
-<!-- Modal -->
-<div class="modal fade" id="newEditModal" tabindex="-1" role="dialog" aria-labelledby="newEditModalLabel" aria-hidden="true">
-     <div class="modal-dialog">
-          <div class="modal-content">
-               <div class="modal-header">
-                    <h5 class="modal-title" id="newEditModalLabel">Pilih Edit Data berdasarkan Jam</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                    </button>
-               </div>
-               <form action="<?= base_url('dashboard/edit') ?>" method="POST">
-                    <div class="modal-body">
-                         <div class="form-group">
-
-                              <select class="form-control form-control-sm" id="id_mom" name="id_mom">
-                                   <?php $i = 1; ?>
-                                   <?php foreach ($momitoringmom as $mm) : ?>
-                                        <option value="<?= $mm['id_mom'] ?>"><?= $mm['jam'] ?></option>
-                                        <?php $i++; ?>
-                                   <?php endforeach; ?>
-                              </select>
-
-                         </div>
-                    </div>
-                    <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <button type="submit" class="btn btn-primary">Edit</button>
-                    </div>
-               </form>
-          </div>
-     </div>
-</div>

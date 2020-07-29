@@ -86,36 +86,49 @@ class reportProduct extends FPDF
           return $nl;
      }
 
+     // Page header
      function Header()
      {
-          if ($this->kriteria == "transkip") {
-               $this->image('images/logo.jpg', 12, 14, 25, 25);
-
-               $nm = $this->nama;
-
-               $this->Ln(2);
-               $this->SetFont('Arial', 'B', 10);
-               $this->MultiCell(0, 4, " TOKO ONLINE ELEKTRONIK", 0, 1, 'C');
-               $this->SetFont('Arial', 'B', 12);
-               $this->MultiCell(0, 6, " SUPERSTARS", 0, 1, 'C');
-               $this->SetFont('Arial', '', 8);
-               $this->MultiCell(0, 4, " Jalan Pegangsaan No.21 Blok A4, Telp. 021-47626448, 2849622, 9337272, 8425273
-   n Fax. 021-202   8986 Email : ssrvices@superstars.comn Jakarta Barat", 0, 1, 'C');
-               $this->Ln(5);
-               $this->SetFont('Arial', 'B', 10);
-               $this->MultiCell(0, 4, "===========================================================================================", 0, 1, 'C');
-               $this->Cell(0, 10, $this->nama, 2, 1, 'C');
-          }
+          $this->SetFont('Arial', 'B', 6);
+          $this->Cell(25, 10, '', 1, 0, 'C');
+          $this->Image('application/controllers/PSG.png', 18, 10, 10);
+          $this->Cell(120, 10, 'PT. PULAU SAMBU', 1, 0, 'C');
+          $this->Cell(45, 5, 'Dok : MOM/DRP/20', 1, 10);
+          $this->Cell(45, 5, 'Tgl :', 1, 1);
+          $this->Cell(25, 5, 'JUDUL', 1, 0, 'C');
+          $this->Cell(120, 5, 'MONITORING OPERASIONAL MESIN', 1, 0, 'C');
+          $this->Cell(45, 5, 'Hal :', 1, 1);
+          $this->Cell(190, 5, '', 1, 1);
+          $this->Cell(10, 20, 'Jam', 1, 0, 'C');
+          $this->Cell(180, 5, 'LINE HIJAU BELT PRESS I', 1, 10, 'C');
+          $this->Cell(50, 10, 'GRINDER (1.8 - 4 mm)', 1, 0, 'C');
+          $this->Cell(130, 5, 'SETTING ROLLER FEEDING 2 (1 - 5 mm)', 1, 1, 'C');
+          $this->SetY(45);
+          $this->SetX(20);
+          $this->Cell(10, 5, 'GPB 1', 1, 0, 'C');
+          $this->Cell(10, 5, 'GPB 2', 1, 0, 'C');
+          $this->Cell(10, 5, 'GPB 3', 1, 0, 'C');
+          $this->Cell(10, 5, 'GPB 4', 1, 0, 'C');
+          $this->Cell(10, 5, 'GPB 5', 1, 0, 'C');
+          $this->SetY(40);
+          $this->SetX(70);
+          $this->Cell(21, 10, 'Regulator 1', 1, 0, 'C');
+          $this->Cell(21, 10, 'Regulator 2', 1, 0, 'C');
+          $this->Cell(22, 10, 'Regulator 3', 1, 0, 'C');
+          $this->Cell(22, 10, 'Regulator 4', 1, 0, 'C');
+          $this->Cell(22, 10, 'Regulator 5', 1, 0, 'C');
+          $this->Cell(22, 10, 'Main Motor', 1, 1, 'C');
      }
 
+     // Page footer
      function Footer()
      {
-          //Position at 1.5 cm from bottom
-          //$this->SetY(-15);
-          //Arial italic 8
-          //$this->SetFont('Arial','',6);
-          //Page number
-          //$this->Cell(0,10,'Report',0,0,'C');
+          // Position at 1.5 cm from bottom
+          $this->SetY(-15);
+          // Arial italic 8
+          $this->SetFont('Arial', 'I', 8);
+          // Page number
+          $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
      }
 
      public function setKriteria($i)
